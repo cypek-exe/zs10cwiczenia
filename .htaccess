@@ -1,0 +1,10 @@
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /
+
+# Jeżeli żądanie nie odnosi się do istniejącego pliku lub katalogu,
+# przekieruj je na plik index.php z odpowiednimi parametrami
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]

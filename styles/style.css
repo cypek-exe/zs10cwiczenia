@@ -1,0 +1,110 @@
+@font-face {
+  font-family: Font1;
+  src: url(../font/TitilliumWeb-ExtraLight.ttf);
+}
+:root {
+  --website-width: min(900px, 90vw);
+  font-family: Font1;
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 105px;
+  padding-bottom: 61px;
+  background-color: #d1e5ff;
+}
+
+h1, h2, h3, h4, h5, h6,
+strong {
+  color: #000;
+}
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 2px;
+}
+
+a {
+  color: #001633
+}
+
+section.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: var(--website-width);
+}
+
+.panel {
+  text-decoration: none;
+  box-shadow: 0 0 20px #0001;
+  color: #000;
+  background-color: aliceblue;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+section.cards > a {
+  flex: 1 1 280px;
+}
+section.cards article > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  border-bottom: solid #333 1px;
+  color: #000;
+}
+section.cards article > header > img.icon {
+  width: 75px;
+}
+section.cards article > header > h2 {
+  font-size: 1.5em;
+}
+section.cards article > p {
+  text-align: justify;
+}
+
+section.cards#exercises article h2,
+section.cards#exercises article h3 {
+  text-align: center;
+}
+
+section#discord_info {
+  width: var(--website-width);
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  box-shadow: 0 0 20px #0001;
+  background-color: aliceblue;
+  padding: 10px 0;
+  color: #000;
+  text-wrap: nowrap;
+  text-align: center;
+  font-size: 14px;
+}
+footer > div.container {
+  display: flex;
+  justify-content: space-between;
+
+  width: var(--website-width);
+}
