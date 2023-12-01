@@ -201,7 +201,7 @@ $conn -> close();
   </section>
   <footer>
     <div class="container">
-      <p>Wersja strony: beta-2.0v</p>
+      <p>Wersja strony: 2.0.0-beta.2</p>
       <p>Copyright© <?php echo date('Y') ?> ZS10 Ćwiczenia</p>
     </div>
   </footer>
