@@ -72,7 +72,7 @@ input[type="reset"] {
   padding: 10px;
   border: none;
   border-radius: 25px;
-  background-color: #d1e5ff;
+  background-color: var(--bg-color);
   color: #333;
   font-size: .8em;
   text-transform: uppercase;
@@ -88,7 +88,7 @@ input[type="submit"]:focus,
 input[type="reset"]:focus {
   background-color: #c4ddfe;
   box-shadow: 0 0 10px #0002;
-  color: #000;
+  color: var(--text-color);
   cursor: pointer;
 }
 
