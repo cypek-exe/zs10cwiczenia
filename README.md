@@ -23,9 +23,9 @@ The application aims to learn by performing available exercises. You will find m
 
 ## Screenshots
 
-<img src="./screenshots/screenshot1.png" alt="App Screenshot" width="650">
-<img src="./screenshots/screenshot2.png" alt="App Screenshot" height="250">
-<img src="./screenshots/screenshot3.png" alt="App Screenshot" height="250">
+<img src="./screenshots/screenshot1.png" alt="App Screenshot" width="400">
+<img src="./screenshots/screenshot2.png" alt="App Screenshot" width="400">
+<img src="./screenshots/screenshot3.png" alt="App Screenshot" width="400">
 
 
 ## Feedback
