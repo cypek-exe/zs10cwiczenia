@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.3-beta.2
+
+- Improved styles
+
 ## 2.0.3-beta.1
 
 - Added stats (correct, incorrect and streak)
