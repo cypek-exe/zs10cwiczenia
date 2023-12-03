@@ -3,6 +3,8 @@ Options -Indexes
 RewriteEngine On
 RewriteBase /
 
+RewriteRule o-nas about-us.php [L]
+
 # Jeżeli żądanie nie odnosi się do istniejącego pliku lub katalogu,
 # przekieruj je na plik index.php z odpowiednimi parametrami
 RewriteCond %{REQUEST_FILENAME} !-f
