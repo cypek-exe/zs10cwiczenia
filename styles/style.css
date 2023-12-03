@@ -24,8 +24,7 @@ body {
   background-color: #d1e5ff;
 }
 
-h1, h2, h3, h4, h5, h6,
-strong {
+h1, h2, h3, h4, h5, h6, strong {
   color: #000;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -52,8 +51,13 @@ section.cards {
   padding: 20px;
 }
 
-section.cards > a {
+section.cards > .panel {
   flex: 1 1 280px;
+}
+section.cards article {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
 }
 section.cards article > header {
   display: flex;
@@ -74,9 +78,14 @@ section.cards article > p {
   text-align: justify;
 }
 
-section.cards#exercises article h2,
-section.cards#exercises article h3 {
+section.cards article h2,
+section.cards article h3 {
   text-align: center;
+}
+
+section#about-us article .links {
+  display: flex;
+  justify-content: space-around;
 }
 
 section#discord_info {
