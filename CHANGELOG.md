@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.3-beta.1
+
+- Added stats (correct, incorrect and streak)
+- Fixed hint button and skip button
+- Added `cursor: wait;` on translation section when is fetching data
+
 ## 2.0.1-beta.1
 
 - functions separated from `index.php` to 
