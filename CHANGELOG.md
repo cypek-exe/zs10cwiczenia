@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.1-beta.1
+
+- functions separated from `index.php` to 
+  - `content.php`
+  - `exercises.php`
+  - `footer.php`
+  - `header.php`
+- Added `about-us.php` file instead of an empty `o-nas.html` file
+- Added *RewriteRule* to the `about-us.php` file
+- Cosmetic changes to `style.css` and `README.md` + deleted **?>** from end of all `PHP` files
+
 ## 2.0.0-beta.2
 
 - Added README.md and CHANGELOG.md (and screenshots) to the repository.
