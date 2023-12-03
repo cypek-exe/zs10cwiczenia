@@ -8,6 +8,11 @@ section#exercise {
 section#discord_info{
   max-width: 600px;
 }
+section#exercise form {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
 section#exercise h2,
 section#exercise h3 {
   text-align: center;
@@ -18,28 +23,11 @@ section#exercise p#question {
 section#exercise p#question strong {
   font-size: 1.2em;
 }
-section#exercise input[type="text"] {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 25px;
-  font-size: 1em;
-}
 section#exercise div#buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-}
-section#exercise div#buttons > input[type="button"] {
-  flex: 1 1 140px;
-  padding: 10px;
-  border: none;
-  border-radius: 25px;
-  background-color: #d1e5ff;
-  color: #333;
-  font-size: 1em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 section#exercise div#result {
   min-height: 60px;
@@ -51,4 +39,59 @@ section#exercise div#options {
 section#exercise div#options h3,
 section#exercise div#options label {
   text-align: center;
+}
+
+div#stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+div#other-info p#subtitle {
+  text-align: center;
+}
+
+
+input[type="text"] {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  font-size: .8em;
+  transition: .1s;
+  outline: none;
+}
+input[type="text"]:hover,
+input[type="text"]:focus {
+  box-shadow: 0 0 10px #0002;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  flex: 1 1 140px;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: #d1e5ff;
+  color: #333;
+  font-size: .8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: .1s;
+  outline: none;
+}
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus {
+  background-color: #c4ddfe;
+  box-shadow: 0 0 10px #0002;
+  color: #000;
+  cursor: pointer;
+}
+
+.fetching-data {
+  cursor: wait;
 }
