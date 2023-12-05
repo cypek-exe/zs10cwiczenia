@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.2-beta.1
+
+- Added special signs buttons (like ä ö ü ß)
+
 ## 2.0.3-beta.2
 
 - Improved styles
