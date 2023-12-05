@@ -3,19 +3,38 @@
 function print_translation(
   $subject_name,
   $exercise_title,
-  $exercise_subtitle
+  $exercise_subtitle,
+  $custom_button_set
 ) {
 ?>
 <link rel="stylesheet" href="/styles/translations.css">
 <section id="exercise" class="panel fetching-data">
   <h2><?php echo $subject_name.' - '.$exercise_title ?></h2>
   <p id="question"></p>
+<?php
+
+if (!is_null($custom_button_set)) {
+  switch ($custom_button_set) {
+    case 0:
+  ?>
+  <div id="special-signs">
+    <input type="button" value="ä" class="special-sign case-changeable">
+    <input type="button" value="ö" class="special-sign case-changeable">
+    <input type="button" value="ü" class="special-sign case-changeable">
+    <input type="button" value="ß" class="special-sign">
+  </div>
+  <script src="/js/special_signs.js"></script>
+  <?php
+  }
+}
+
+?>
   <form onsubmit="return false;">
     <input type="text" placeholder="Wpisz odpowiedź tutaj" id="answer">
     <div id="buttons">
-      <input type="submit" value="Sprawdź" id="check_button">
-      <input type="button" value="Nie wiem" id="hint_button">
-      <input type="reset" value="Pomiń" id="skip_button">
+      <input type="submit" value="SPRAWDŹ" id="check_button">
+      <input type="button" value="NIE WIEM" id="hint_button">
+      <input type="reset" value="POMIŃ" id="skip_button">
     </div>
   </form>
   <div id="result"></div>

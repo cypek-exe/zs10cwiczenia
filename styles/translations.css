@@ -68,17 +68,20 @@ input[type="text"]:focus {
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-  flex: 1 1 140px;
   padding: 10px;
   border: none;
   border-radius: 25px;
   background-color: var(--bg-color);
   color: #333;
   font-size: .8em;
-  text-transform: uppercase;
   letter-spacing: 1px;
   transition: .1s;
   outline: none;
+}
+#buttons > input[type="button"],
+#buttons > input[type="submit"],
+#buttons > input[type="reset"] {
+  flex: 1 1 140px;
 }
 input[type="button"]:hover,
 input[type="submit"]:hover,
@@ -94,4 +97,20 @@ input[type="reset"]:focus {
 
 .fetching-data {
   cursor: wait;
+}
+
+
+#special-signs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+#special-signs > .special-sign {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+#special-signs > .special-sign.hidden {
+  display: none;
 }

@@ -28,16 +28,18 @@ if (isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO']) {
 
     if (isset($path_array[1])) {
       $exercise = $path_array[1];
-      $query2 = "SELECT id, alias, title, subtitle FROM exercises WHERE alias = '$exercise'";
+      $query2 = "SELECT alias, title, subtitle, custom_button_set FROM exercises WHERE alias = '$exercise'";
       $result2 = $conn -> query($query2);
 
       if ($row2 = $result2 -> fetch_assoc()) {
+
         get_header('ZS10 Ćwiczenia - '.$row2['title']);
 
         print_translation(
           $row1['name'],
           $row2['title'],
-          $row2['subtitle']
+          $row2['subtitle'],
+          $row2['custom_button_set']
         );
       } else {
         header('Location: /'.$row1['alias']);
