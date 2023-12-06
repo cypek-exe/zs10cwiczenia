@@ -34,10 +34,10 @@ function buttonContentToLowerCase() {
 }
 
 let mouse_timer
-function mouseDown() {
+function pointerDown() {
   mouse_timer = setTimeout(buttonContentToUpperCase, 500);
 }
-function mouseUp(target) {
+function pointerUp(target) {
   if (mouse_timer) clearTimeout(mouse_timer)
 
   if (target.value !== undefined) {
@@ -58,7 +58,7 @@ window.addEventListener('keyup', e =>
 
 
 special_signs.addEventListener("pointerdown", e => {
-  if (e.target.classList.contains('special-sign')) mouseDown()
+  if (e.target.classList.contains('special-sign')) pointerDown()
 });
-document.body.addEventListener("pointerup", e => mouseUp(e.target))
-// document.body.addEventListener("click", e => mouseUp(e.target))
+document.body.addEventListener("pointerup", e => pointerUp(e.target))
+special_signs.addEventListener("mouseup", () => input_answer.focus())
