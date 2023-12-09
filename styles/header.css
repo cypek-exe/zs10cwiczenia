@@ -1,6 +1,6 @@
 header#main_header {
   box-shadow: 0 0 20px #0001;
-  background-color: aliceblue;
+  background-color: var(--main-color);
   transition: top 0.3s;
   position: fixed;
   top: 0;
@@ -10,6 +10,11 @@ header#main_header {
   display: flex;
   justify-content: center;
   padding: 15px 0;
+
+  z-index: 1;
+}
+header#main_header.hidden {
+  top: -85px;
 }
 
 header#main_header > div.container {
@@ -42,14 +47,16 @@ header#main_header nav a {
 header#main_header nav a:hover {
   color: var(--accent-text-color);
 }
+ul#menu-list {
+  transition: 1s;
+}
 
 @media only screen and (max-width: 650px) {
+
   header#main_header h1 {
     letter-spacing: 3px;
   }
-  ul {
-    display: none !important;
-  }
+
   div#menu-icon {
     width: 35px;
     height: 26px;
@@ -61,10 +68,83 @@ header#main_header nav a:hover {
     flex-direction: column;
     z-index: 2;
   }
+
+  div#menu-icon > div.menu-icon-line {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    transition: 
+      width 0.3s,
+      transform .3s;
+    background-color: var(--text-color);
+  }
+  div#menu-icon > div.menu-icon-line:first-child,
+  div#menu-icon > div.menu-icon-line:last-child {
+    animation-delay: 0.2s;
+  }
+  
+  div#menu-icon:hover > div.menu-icon-line {
+    width: 90%;
+  }
+  div#menu-icon:hover > div.menu-icon-line:first-child,
+  div#menu-icon:hover > div.menu-icon-line:last-child {
+    width: 70%;
+  }
+
+  ul#menu-list.shown + div#menu-icon > div.menu-icon-line:nth-child(2n) {
+    width: 0;
+  }
+  ul#menu-list.shown + div#menu-icon > div.menu-icon-line:first-child {
+    transform: 
+      translateY(11px)
+      rotate(45deg);
+  }
+  ul#menu-list.shown + div#menu-icon > div.menu-icon-line:last-child {
+    transform: 
+      translateY(-11px)
+      rotate(-45deg);
+  }
+
   div#menu-icon > div.menu-icon-line {
     width: 100%;
     height: 4px;
     border-radius: 2px;
     background-color: #000;
+  }
+
+  ul#menu-list {
+    display: none !important;
+  }
+  ul#menu-list.shown {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    animation: animation-1 .1s linear backwards;
+    background-color: var(--bg-color);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    z-index: 1;
+  }
+  ul#menu-list.shown > li {
+    width: var(--website-width);
+    text-align: center;
+    font-size: 1.2em;
+  }
+  ul#menu-list.shown > li > a {
+    animation: animation-1 .1s linear backwards;    
+  }
+  
+}
+
+@keyframes animation-1 {
+  from {
+    color: transparent;
+    background-color: transparent;
   }
 }

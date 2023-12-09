@@ -14,11 +14,12 @@ function get_footer() {
   </section>
   <footer>
     <div class="container">
-      <p>Wersja strony: 2.1.2-beta.2</p>
+      <p>Wersja strony: 2.2.1-beta.0</p>
       <p>Copyright© <?php echo date('Y') ?> ZS10 Ćwiczenia</p>
     </div>
   </footer>
-  <script src="/js/reveal_sticky_header.js" type="module"></script>
+  <script type="module" src="/js/hamburger_menu.js"></script>
+  <script type="module" src="/js/reveal_sticky_header.js"></script>
 </body>
 </html>
 <?php

@@ -19,7 +19,7 @@ function get_header($title) {
         <h1>ZS10 Ćwiczenia</h1>
       </a>
       <nav>
-        <ul>
+        <ul id="menu-list">
           <li>
             <a href="/">Strona główna</a>
           </li>

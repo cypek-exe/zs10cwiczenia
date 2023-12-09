@@ -8,9 +8,9 @@ let previous_scroll_position = getScrollPosition()
 
 window.addEventListener('scroll', () => {
   if (previous_scroll_position > getScrollPosition())
-    header_element.style.top = "0"
+    header_element.classList.remove('hidden')
   else
-    header_element.style.top = "-85px"
+    header_element.classList.add('hidden')
 
   previous_scroll_position = getScrollPosition()
 })
