@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1-beta.0
+
+- Added functionality to hamburger menu (drop-down)
+
 ## 2.1.2-beta.2
 
 - Improved special signs for touch devices
