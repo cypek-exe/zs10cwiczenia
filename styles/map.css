@@ -1,0 +1,46 @@
+main#exercise {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  width: var(--website-width);
+}
+main#exercise img#map {
+  width: 100%;
+
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+input[type="button"] {
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--bg-color);
+  color: #333;
+  font-size: .8em;
+  letter-spacing: 1px;
+  transition: .1s;
+  outline: none;
+}
+input[type="button"]:hover,
+input[type="button"]:focus {
+  background-color: #c4ddfe;
+  box-shadow: 0 0 10px #0002;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+div#stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.fetching-data {
+  cursor: wait;
+}
+
