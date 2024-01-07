@@ -38,7 +38,7 @@ export default class Map_exercise extends EUtils.MyTimeout {
 
   #assignNextIndex = () => {
     if (this.is_random_order)
-      this.#index = EUtils.getRandomInt(this.#places_data.length - 1)
+      this.#index = EUtils.getRandomInt(this.#places_keys.length - 1)
     else
       this.#index = (this.#index + 1) % this.#places_keys.length
 
