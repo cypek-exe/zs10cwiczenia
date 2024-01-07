@@ -14,7 +14,7 @@ if (
   $subject  = $_GET['s'];
   $exercise = $_GET['e'];
 
-  require_once 'conn-data.php';
+  $cd = require_once 'conn-data.php';
 
   $conn = new mysqli(
     $cd['host'],
@@ -24,40 +24,92 @@ if (
   );
 
   $query = <<< EOD
-  SELECT
-    s.name AS subject_name,
-    e.id AS exercise_id,
-    e.title As exercise_title
-  FROM subjects s
-  INNER JOIN exercises e
-    ON e.alias = '$exercise'
-    AND e.subject_id = s.id
-  WHERE s.alias = '$subject'
-  EOD;
+    SELECT
+      S.Name  AS subject_name,
+      E.ID    AS exercise_id,
+      E.Type  AS exercise_type,
+      E.Title As exercise_title
+    FROM       Subjects  S
+    INNER JOIN Exercises E
+      ON  E.Alias      = '$exercise'
+      AND E.Subject_ID = S.ID
+    WHERE S.Alias      = '$subject';
+    EOD;
+
   $result = $conn -> query($query);
 
   if ($data = $result -> fetch_assoc()) {
-    $exercise_id = $data['exercise_id'];
 
-    $translations_query = <<< EOD
-    SELECT phrase, translation
-    FROM translations
-    WHERE exercise_id = $exercise_id
-    EOD;
-    $translations_result = $conn -> query($translations_query);
+    $exercise_type = $data['exercise_type'];
 
-    $translations = array();
+    switch ($exercise_type) {
+      case 0: // translation exercise
+        $exercise_id = $data['exercise_id'];
 
-    while ($translations_row = $translations_result -> fetch_row()) {
-      $translations[] = $translations_row;
+        $translations_query = <<< EOD
+          SELECT T.Phrase, T.Translation
+          FROM
+            Translations           T,
+            Translations_Exercises TE
+          WHERE 
+            TE.Exercise_ID   = $exercise_id AND 
+            T.Translation_ID = TE.Exercise_ID;
+          EOD;
+
+        $translations_result = $conn -> query($translations_query);
+
+        $translations = $translations_result -> fetch_all(MYSQLI_NUM);
+
+        header('Content-Type: application/json');
+
+        echo json_encode(array(
+          'subject_name'   => $data['subject_name'],
+          'exercise_title' => $data['exercise_title'],
+          'translations'   => $translations
+        ), JSON_UNESCAPED_UNICODE);
+
+        break;
+
+      case 1: // map exercises
+        $exercise_id = $data['exercise_id'];
+
+        $places_query = <<< EOD
+          SELECT P.Place_Index, P.Name
+          FROM
+            Places         P,
+            Maps_Exercises ME
+          WHERE 
+            ME.Exercise_ID = $exercise_id AND 
+            P.Map_ID       = ME.Exercise_ID;
+          EOD;
+
+        $places_result = $conn -> query($places_query);
+
+        $places = $places_result -> fetch_all(MYSQLI_ASSOC);
+
+        $places_assoc = array();
+
+        foreach ($places as $place) {
+          $place_index = $place['Place_Index'];
+          $place_name  = $place['Name'];
+          $places_assoc[$place_index] = $place_name;
+        }
+
+        header('Content-Type: application/json');
+
+        echo json_encode(array(
+          'subject_name'   => $data['subject_name'],
+          'exercise_title' => $data['exercise_title'],
+          'places'         => $places_assoc
+        ), JSON_UNESCAPED_UNICODE);
+
+        break;
+      
+      default:
+        echo 'Unknown exercise type :(';
+        break;
     }
 
-    header('Content-Type: application/json');
-    echo json_encode(array(
-      'subject_name'   => $data['subject_name'],
-      'exercise_title' => $data['exercise_title'],
-      'translations'   => $translations
-    ), JSON_UNESCAPED_UNICODE);
   } else {
     not_found();
   }
