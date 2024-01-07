@@ -8,7 +8,7 @@ The application aims to learn by performing available exercises. You will find m
 
 - Karol Kopczyński - [@KarixD2137](https://github.com/KarixD2137)
 - Cyprian Moj - [@cypek-exe](https://github.com/cypek-exe)
-- Paweł Wasilewski
+- Paweł Wasilewski - [@Widznajomych](https://github.com/Widznajomych)
 
 
 ## Demo
@@ -19,6 +19,7 @@ The application aims to learn by performing available exercises. You will find m
 ## Available types of exercises
 
 - Translations - the user must translate the sentences into the specified language
+- Map - the user must click on the appropriate area on the map
 
 
 ## Screenshots
@@ -47,4 +48,4 @@ Information about changes [goes here](./CHANGELOG.md)
 
 **Client:** Vanilla JavaScript, CSS, HTML
 
-**Server:** PHP, MySql
+**Server:** PHP, MySQL

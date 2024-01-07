@@ -1,5 +1,49 @@
 # Changelog
 
+## 2.3.8
+
+- Regarding **JavaScript** files: 
+  - Added map exercises written using **OOP** (`exercise-utils.js`, `map-model.js`, `map-app.js`)
+  - Translation exercise prescribed using **OOP** (`exercise-utils.js`, `translation-model.js`, `translation-app.js`)
+  - *fetch()* instruction in `fetch_data.js` has changed form *.then()* chain to *async*/*await*
+  - Improved `reveal_sticky_header.js` to *header* not be hidden on window resize
+  - All scripts are `type="module"` 
+- Regarding **CSS** files:
+  - Added `map.css` file to style map exercises
+  - Max website width in `style.css` hes been changed form 1000px to 1200px
+- Regarding **PHP** files:
+  - Begun used shorter syntax:
+    ```PHP
+    <?= /* content */ ?>
+    ```
+    instead of:
+    ```PHP
+    <?php echo /* content */ ?>
+    ```
+  - Begun used more readable syntax:
+    ```HTML
+    ?>
+    <!-- HTML CONTENT -->
+    <?php
+    ```
+    instead of:
+    ```PHP
+    <?php 
+    echo <<< EOD
+      <!-- HTML CONTENT -->
+    EOD
+    ?>
+    ```
+  - `get-data.php`
+    - Improved script operation changing *while* loop to *fetch_all()* method
+    - Added support for map exercises
+  - `index.php` is more readable using better variable names and better SQL query notation
+  - `conn-data.php` file now returns associated array of data instead of creating variable *$cd* 
+- SQL:
+  - Database table is more readable using first letter upper case like *Name*, *Type*, *ID*
+- Other files:
+  - Added maps images
+
 ## 2.2.1-beta.0
 
 - Added functionality to hamburger menu (drop-down)
