@@ -10,7 +10,7 @@ function get_header($title) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/style.css">
   <link rel="stylesheet" href="/styles/header.css">
-  <title><?php echo $title ?></title>
+  <title><?= $title ?></title>
 </head>
 <body>
   <header id="main_header">

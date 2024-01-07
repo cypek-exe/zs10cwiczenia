@@ -14,8 +14,8 @@ function get_footer() {
   </section>
   <footer>
     <div class="container">
-      <p>Wersja strony: 2.2.1-beta.0</p>
-      <p>Copyright© <?php echo date('Y') ?> ZS10 Ćwiczenia</p>
+      <p>Wersja strony: 2.3.8</p>
+      <p>Copyright© <?= date('Y') ?> ZS10 Ćwiczenia</p>
     </div>
   </footer>
   <script type="module" src="/js/hamburger_menu.js"></script>

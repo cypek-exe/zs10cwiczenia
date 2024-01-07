@@ -7,20 +7,19 @@ function print_subject(
   $description
 ) {
   $lc_subject_name = strtolower($subject_name);
-
-  echo <<< EOD
-  <a href="$reference_path" class="panel">
+?>
+  <a href="<?= $reference_path ?>" class="panel">
     <article>
       <header>
-        <img src="$icon_dir" alt="ikona przedmiotu $lc_subject_name" class="icon">
-        <h2>$subject_name</h2>
+        <img src="<?= $icon_dir ?>" alt="ikona przedmiotu <?= $lc_subject_name ?>" class="icon">
+        <h2><?= $subject_name ?></h2>
       </header>
       <p>
-        $description
+        <?= $description ?>
       </p>
     </article>
-  </a>\n
-  EOD;
+  </a>
+<?php
 }
 
 
@@ -30,15 +29,15 @@ function print_exercise(
   $subtitle,
   $description
 ) {
-  echo <<< EOD
-  <a href="$reference_path" class="panel">
+?>
+  <a href="<?= $reference_path ?>" class="panel">
     <article>
-      <h2>$title</h2>
-      <h3>$subtitle</h3>
+      <h2><?= $title ?></h2>
+      <h3><?= $subtitle ?></h3>
       <p>
-        $description
+        <?= $description ?>
       </p>
     </article>
-  </a>\n
-  EOD;
+  </a>
+<?php
 }
