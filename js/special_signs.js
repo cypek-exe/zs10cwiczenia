@@ -1,4 +1,6 @@
 const special_signs = document.getElementById('special-signs')
+const input_answer  = document.getElementById('answer')
+
 
 function insertNewSpecialSign(sign) {
   const selection_start = input_answer.selectionStart
