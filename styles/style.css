@@ -3,7 +3,7 @@
   src: url(../font/TitilliumWeb-ExtraLight.ttf);
 }
 :root {
-  --website-width: min(1000px, 90vw);
+  --website-width: min(1200px, 90vw);
   --text-color: #000;
   --accent-text-color: #011033;
   --bg-color: #d1e5ff;
