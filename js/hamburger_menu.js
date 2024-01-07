@@ -6,6 +6,6 @@ function toggle_menu_list() {
 }
 
 menu_icon.addEventListener('click', toggle_menu_list)
-menu_icon.addEventListener('keyup', e =>
-  e.key === 'Enter' && toggle_menu_list()
-)
+menu_icon.addEventListener('keyup', e => {
+  if (e.key === 'Enter') toggle_menu_list()
+})
