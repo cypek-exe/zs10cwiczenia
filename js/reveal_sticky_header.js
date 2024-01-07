@@ -14,3 +14,7 @@ window.addEventListener('scroll', () => {
 
   previous_scroll_position = getScrollPosition()
 })
+
+window.addEventListener('resize', () => 
+  header_element.classList.remove('hidden')
+)
