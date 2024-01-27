@@ -7,7 +7,7 @@ The application aims to learn by performing available exercises. You will find m
 ## Authors
 
 - Karol Kopczyński - [@KarixD2137](https://github.com/KarixD2137)
-- Cyprian Moj - [@cypek-exe](https://github.com/cypek-exe)
+- Cyprian Moj - [@cypekdev](https://github.com/cypekdev)
 - Paweł Wasilewski - [@Widznajomych](https://github.com/Widznajomych)
 
 
