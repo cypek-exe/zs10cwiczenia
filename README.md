@@ -8,7 +8,7 @@ The application aims to learn by performing available exercises. You will find m
 
 - Karol Kopczyński - [@KarixD2137](https://github.com/KarixD2137)
 - Cyprian Moj - [@cypekdev](https://github.com/cypekdev)
-- Paweł Wasilewski - [@Widznajomych](https://github.com/Pawel-Wasilewski)
+- Paweł Wasilewski - [@Pawel-Wasilewski](https://github.com/Pawel-Wasilewski)
 
 
 ## Demo
