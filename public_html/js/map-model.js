@@ -1,6 +1,6 @@
 import EUtils from "./exercise-utils.js";
 
-export default class Map_exercise extends EUtils.MyTimeout {
+export default class Map_exercise {
 
   #result_delay = 2000 // time in milliseconds after which the result will be cleared
 
@@ -15,15 +15,13 @@ export default class Map_exercise extends EUtils.MyTimeout {
   #index              = 0
 
   #answered_before = []
-  #answered_before_to_primary = []
 
   constructor(places_data) {
-    super()
-
     this.#places_data = places_data
     this.#places_keys = Object.keys(this.#places_data)
 
     this.#assignDOMElements()
+    this.clearResultTimeout = new EUtils.MyTimeout(this.clearResult);
 
     this.#settingsManager()
     this.#handleButtonEvent()
@@ -36,7 +34,7 @@ export default class Map_exercise extends EUtils.MyTimeout {
     // in CSS, elements with class fetching-data have `cursor: wait;` property 
   }
 
-  #assignNextIndex = () => {
+  #assignNextIndex() {
     if (this.is_random_order)
       this.#index = EUtils.getRandomInt(this.#places_keys.length - 1)
     else
@@ -50,36 +48,36 @@ export default class Map_exercise extends EUtils.MyTimeout {
       this.#index = (this.#index + 1) % this.#places_data.length
   }
 
-  #getPlaceKey = (index) => {
+  #getPlaceKey(index) {
     return this.#places_keys[index]
   }
 
-  #getPlaceName = (key) => {
+  #getPlaceName(key) {
     return this.#places_data[key]
   }
 
-  renderQuestion = () => {
+  renderQuestion() {
     const key = this.#getPlaceKey(this.#index)
     this.question.innerHTML = 
-      `Wyrażenie: <strong>${this.#getPlaceName(key)}</strong>`
+      `Miejsce: <strong>${this.#getPlaceName(key)}</strong>`
   }
 
 
-  check = (answer) => {
+  check(answer) {
     // `answer` IS key, NOT index
     // `answer` must be type of string,
     // because `this.#getPlaceKey()` returns string value
     console.log(this.#getPlaceName(answer))
     if (answer === this.#getPlaceKey(this.#index)) {
       this.#correct()
-      this.changeTimeout(this.clearResult, this.#result_delay)
+      this.clearResultTimeout.changeTimeout(this.#result_delay)
       this.#assignNextIndex()
       this.renderQuestion()
     } else
       this.#incorrect(answer)
   }
 
-  skip = () => {
+  skip() {
     this.#streak = 0
     this.renderStats()
     this.#assignNextIndex()
@@ -87,7 +85,7 @@ export default class Map_exercise extends EUtils.MyTimeout {
   }
 
 
-  #correct = () => {
+  #correct() {
     this.#correct_answers++
     this.#streak++
     this.renderStats()
@@ -99,20 +97,20 @@ export default class Map_exercise extends EUtils.MyTimeout {
     this.result.innerHTML = 'Dobrze ✅'
   }
 
-  #incorrect = (answer) => {
+  #incorrect(answer) {
     this.#incorrect_answers++
     this.#streak = 0
     this.renderStats()
 
     this.#number_of_attempts++
     this.result.innerHTML = `Źle ❌ <br> To: <strong>${this.#getPlaceName(answer)}</strong>`
-    this.clearLastTimeout()
+    this.clearResultTimeout.clearLastTimeout()
   }
 
 
-  #settingsManager = () => {
+  #settingsManager() {
     // random order
-    if (typeof(Storage) !== "undefined" && navigator.cookieEnabled) {
+    if (EUtils.isLocalStorageEnabled()) {
 
       const ls_is_random_order = localStorage.getItem('is_random_order')
 
@@ -140,11 +138,11 @@ export default class Map_exercise extends EUtils.MyTimeout {
     }
   }
 
-  #handleButtonEvent = () => {
-    this.skip_button.addEventListener('click', this.skip)
+  #handleButtonEvent() {
+    this.skip_button.addEventListener('click', () => this.skip())
   }
 
-  #handleMapEvent = () => {
+  #handleMapEvent() {
     this.map_element.addEventListener('click', el => {
       console.log(el.target)
       const target_key_parts = el.target.id.split('_')
@@ -155,11 +153,12 @@ export default class Map_exercise extends EUtils.MyTimeout {
     })
   }
   
-  #assignDOMElements = () => {
+  #assignDOMElements() {
     this.question = document.getElementById('question')
     this.result   = document.getElementById('result')
 
-    this.map_element = document.getElementById('map-el')
+    this.map_container = document.getElementById('map-container')
+    this.map_element   = document.getElementById('map-el')
 
     this.random_order_input = document.getElementById('random_order')
     this.skip_button        = document.getElementById('skip_button')
@@ -169,11 +168,11 @@ export default class Map_exercise extends EUtils.MyTimeout {
     this.streak_element            = document.getElementById('streak')
   }
 
-  clearResult = () => {
+  clearResult(){
     this.result.innerHTML = ''
   }
 
-  renderStats = () => {
+  renderStats() {
     this.correct_answers_element  .textContent = this.correct_answers
     this.incorrect_answers_element.textContent = this.incorrect_answers
     this.streak_element           .textContent = this.streak

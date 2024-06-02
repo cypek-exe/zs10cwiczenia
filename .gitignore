@@ -1,2 +1,4 @@
-conn-data.php
 .vscode
+node_modules
+logs
+dist

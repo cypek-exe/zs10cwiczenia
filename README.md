@@ -7,8 +7,8 @@ The application aims to learn by performing available exercises. You will find m
 ## Authors
 
 - Karol Kopczyński - [@KarixD2137](https://github.com/KarixD2137)
-- Cyprian Moj - [@cypek-exe](https://github.com/cypek-exe)
-- Paweł Wasilewski - [@Widznajomych](https://github.com/Widznajomych)
+- Cyprian Moj - [@cypekdev](https://github.com/cypekdev)
+- Paweł Wasilewski - [@Pawel-Wasilewski](https://github.com/Pawel-Wasilewski)
 
 
 ## Demo
@@ -18,9 +18,9 @@ The application aims to learn by performing available exercises. You will find m
 
 ## Available types of exercises
 
-- Translations - the user must translate the sentences into the specified language
-- Map - the user must click on the appropriate area on the map
-
+- **Translations** - the user must translate the sentences into the specified language
+- **Map** - the user must click on the appropriate area on the map
+- **Irregular translations** - the user must translate and conjugate irregular verbs in foreign language
 
 ## Screenshots
 

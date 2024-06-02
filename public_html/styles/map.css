@@ -1,18 +1,25 @@
 main#exercise {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-
-  width: var(--website-width);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px; 
+  width: /* var(--website-width) */ min(1320px, 90vw);
 }
-main#exercise img#map {
-  width: 100%;
 
+img#map {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+#exercise-aside-panel {
+  width: 250px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 input[type="button"] {
@@ -43,4 +50,3 @@ div#stats {
 .fetching-data {
   cursor: wait;
 }
-

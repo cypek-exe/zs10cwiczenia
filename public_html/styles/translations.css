@@ -8,11 +8,12 @@ section#exercise {
 section#discord_info{
   max-width: 600px;
 }
-section#exercise form {
+section#exercise form, section#exercise form #answer-container {
   display: flex;
   gap: 15px;
   flex-direction: column;
 }
+
 section#exercise h2,
 section#exercise h3 {
   text-align: center;
@@ -113,4 +114,12 @@ input[type="reset"]:focus {
 }
 #special-signs > .special-sign.hidden {
   display: none;
+}
+
+
+input[type="text"].correct {
+  background-color: #bffeb5;
+}
+input[type="text"].incorrect {
+  background-color: #fcbfbf;
 }

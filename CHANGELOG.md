@@ -1,5 +1,19 @@
 # Changelog
 
+
+## 3.0.0.beta.0
+
+- **PHP**:
+  - Started using **OOP**;
+  - PHP has been rewritten using **MVC** software design pattern;
+  - Whole backend files are in `./App/` folder;
+- Fixed some small mistakes.
+
+## 2.4.0
+
+- Added irregular translation exercises type;
+- Improved `special_signs.js` file to can be use in irregular translations.
+
 ## 2.3.8
 
 - Regarding **JavaScript** files: 

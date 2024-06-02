@@ -1,6 +1,6 @@
 import EUtils from "./exercise-utils.js";
 
-export default class Translation_exercise extends EUtils.MyTimeout {
+export default class Translation_exercise {
 
   #result_delay = 2000 // time in milliseconds after which the result will be cleared
 
@@ -17,11 +17,10 @@ export default class Translation_exercise extends EUtils.MyTimeout {
   #answered_before_to_primary = []
 
   constructor(translations_data) {
-    super()
-
     this.#translations_data = translations_data
 
     this.#assignDOMElements()
+    this.clearResultTimeout = new EUtils.MyTimeout(this.clearResult);
     this.#settingsManager()
 
     this.#handleButtonsEvents()
@@ -33,7 +32,7 @@ export default class Translation_exercise extends EUtils.MyTimeout {
     // in CSS, elements with class fetching-data have `cursor: wait;` property 
   }
 
-  #assignNextIndex = () => {
+  #assignNextIndex() {
     if (this.is_random_order)
       this.#index = EUtils.getRandomInt(this.#translations_data.length - 1)
     else
@@ -56,20 +55,21 @@ export default class Translation_exercise extends EUtils.MyTimeout {
         this.#index = (this.#index + 1) % this.#translations_data.length
   }
 
-  #getPhrase = (is_mode_to_foreign, index) => {
-    return this.#translations_data[index][+is_mode_to_foreign]
+  #getPhrase(is_mode_to_foreign, index) {
+    const keys = ['phrase', 'translation'];
+    return this.#translations_data[index][keys[+is_mode_to_foreign]]
   }
 
-  renderQuestion = () => {
+  renderQuestion() {
     this.question.innerHTML = 
       `Wyrażenie: <strong>${this.#getPhrase(this.is_mode_to_foreign, this.#index)}</strong>`
   }
 
 
-  check = () => {
+  check() {
     if (this.input_answer.value === this.#getPhrase(!this.is_mode_to_foreign, this.#index)) {
       this.#correct()
-      this.changeTimeout(this.clearResult, this.#result_delay)
+      this.clearResultTimeout.changeTimeout(this.#result_delay)
       this.clearInput()
       this.#assignNextIndex()
       this.renderQuestion()
@@ -77,20 +77,20 @@ export default class Translation_exercise extends EUtils.MyTimeout {
       this.#incorrect()
   }
 
-  hint = () => {
+  hint() {
     this.#streak = 0
     this.renderStats()
     this.#number_of_attempts++
 
     this.result.innerHTML = 
       `Podpowiedź: <strong>${
-        this.#translations_data[this.#index][+this.is_mode_to_foreign]
+        this.#getPhrase(this.is_mode_to_foreign, this.#index)
       }</strong> to <strong>${
-        this.#translations_data[this.#index][+!this.is_mode_to_foreign]
+        this.#getPhrase(!this.is_mode_to_foreign, this.#index)
       }</strong>`;
   }
   
-  skip = () => {
+  skip() {
     this.#streak = 0
     this.renderStats()
     this.clearInput()
@@ -99,7 +99,7 @@ export default class Translation_exercise extends EUtils.MyTimeout {
   }
 
 
-  #correct = () => {
+  #correct() {
     this.#correct_answers++
     this.#streak++
     this.renderStats()
@@ -115,7 +115,7 @@ export default class Translation_exercise extends EUtils.MyTimeout {
     this.result.innerHTML = 'Dobrze ✅'
   }
 
-  #incorrect = () => {
+  #incorrect() {
     this.#incorrect_answers++
     this.#streak = 0
     this.renderStats()
@@ -123,18 +123,18 @@ export default class Translation_exercise extends EUtils.MyTimeout {
     if (this.#number_of_attempts > 0) {
       this.hint()
       // `hint()` functions method `this.#number_of_attempts++` instruction
-      this.clearLastTimeout()
+      this.clearResultTimeout.clearLastTimeout()
     } else {
       this.#number_of_attempts++
       this.result.innerHTML = 'Źle ❌ <br> Spróbuj jeszcze raz'
-      this.changeTimeout(this.clearResult, this.#result_delay)
+      this.clearResultTimeout.changeTimeout(this.#result_delay)
     }
   }
 
 
-  #settingsManager = () => {
+  #settingsManager() {
     // mode to foreign / to primary
-    if (typeof(Storage) !== "undefined" && navigator.cookieEnabled) {
+    if (EUtils.isLocalStorageEnabled()) {
 
       const ls_is_mode_to_foreign = localStorage.getItem('is_mode_to_foreign');
 
@@ -177,7 +177,7 @@ export default class Translation_exercise extends EUtils.MyTimeout {
     }
     
     // random order
-    if (typeof(Storage) !== "undefined" && navigator.cookieEnabled) {
+    if (EUtils.isLocalStorageEnabled()) {
 
       const ls_is_random_order = localStorage.getItem('is_random_order')
 
@@ -205,13 +205,13 @@ export default class Translation_exercise extends EUtils.MyTimeout {
     }
   }
 
-  #handleButtonsEvents = () => {
-    this.check_button.addEventListener('click', this.check)
-    this.hint_button .addEventListener('click', this.hint)
-    this.skip_button .addEventListener('click', this.skip)
+  #handleButtonsEvents() {
+    this.check_button.addEventListener('click', () => this.check())
+    this.hint_button .addEventListener('click', () => this.hint())
+    this.skip_button .addEventListener('click', () => this.skip())
   }
   
-  #assignDOMElements = () => {
+  #assignDOMElements() {
     this.question = document.getElementById('question')
     this.result   = document.getElementById('result')
 
@@ -229,15 +229,15 @@ export default class Translation_exercise extends EUtils.MyTimeout {
     this.streak_element            = document.getElementById('streak')
   }
 
-  clearInput = () => {
+  clearInput() {
     this.input_answer.value = '' 
   }
 
-  clearResult = () => {
+  clearResult() {
     this.result.innerHTML = ''
   }
 
-  renderStats = () => {
+  renderStats() {
     this.correct_answers_element  .textContent = this.correct_answers
     this.incorrect_answers_element.textContent = this.incorrect_answers
     this.streak_element           .textContent = this.streak
